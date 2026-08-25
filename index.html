@@ -3,914 +3,958 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b18">
-<title>Voynexa AI — Explore Beyond Limits</title>
+
+<title>Voynexa — AI Travel & World Explorer</title>
+
+<meta name="description"
+content="Voynexa is your AI-powered world travel explorer, trip planner and travel discovery platform.">
 
 <style>
-:root{
-  --bg:#050816;
-  --bg2:#0a1020;
-  --card:rgba(255,255,255,.055);
-  --card2:#10182c;
-  --text:#fff;
-  --muted:#9ca8bd;
-  --line:rgba(255,255,255,.10);
-  --primary:#7c3aed;
-  --blue:#2563eb;
-  --cyan:#22d3ee;
-  --gold:#f59e0b;
-  --green:#22c55e;
-  --shadow:0 20px 60px rgba(0,0,0,.25);
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+    --bg:#07111f;
+    --bg2:#0b1728;
+    --card:#101f33;
+    --card2:#13263d;
+    --text:#f7fbff;
+    --muted:#9fb0c5;
+    --line:rgba(255,255,255,.09);
+    --primary:#5ee7ff;
+    --secondary:#8b5cf6;
+    --success:#35e39a;
+    --danger:#ff6577;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+}
 
-html{scroll-behavior:smooth}
+.light{
+    --bg:#f4f8fc;
+    --bg2:#ffffff;
+    --card:#ffffff;
+    --card2:#eef5fb;
+    --text:#102033;
+    --muted:#607086;
+    --line:rgba(15,35,55,.1);
+    --shadow:0 20px 50px rgba(30,60,90,.12);
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
-  font-family:Inter,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(124,58,237,.18),transparent 28%),
-    radial-gradient(circle at 90% 20%,rgba(34,211,238,.10),transparent 25%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.5;
-  min-height:100vh;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(94,231,255,.12),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(139,92,246,.13),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
-body.light{
-  --bg:#f5f7fb;
-  --bg2:#fff;
-  --card:#fff;
-  --card2:#f0f3fa;
-  --text:#111827;
-  --muted:#667085;
-  --line:rgba(0,0,0,.10);
+button,
+input,
+select,
+textarea{
+    font:inherit;
 }
 
-button,input,select,textarea{font:inherit}
+button{
+    cursor:pointer;
+}
 
-button{cursor:pointer}
-
-a{text-decoration:none;color:inherit}
-
-.container{
-  width:min(1180px,calc(100% - 30px));
-  margin:auto;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
 /* NAVBAR */
 
 .navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(5,8,22,.82);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(20px);
+    background:rgba(7,17,31,.78);
+    border-bottom:1px solid var(--line);
 }
 
-body.light .navbar{
-  background:rgba(255,255,255,.85);
+.light .navbar{
+    background:rgba(255,255,255,.85);
 }
 
-.nav{
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+.nav-inner{
+    max-width:1250px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:900;
-  white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:-.5px;
 }
 
-.logo span{
-  background:linear-gradient(90deg,#a78bfa,#22d3ee);
-  -webkit-background-clip:text;
-  color:transparent;
+.logo-icon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:0 8px 30px rgba(94,231,255,.25);
 }
-
-.navlinks{
-  display:flex;
-  gap:20px;
-  align-items:center;
-}
-
-.navlinks a{
-  font-size:13px;
-  color:var(--muted);
-}
-
-.navlinks a:hover{color:var(--text)}
 
 .nav-actions{
-  display:flex;
-  gap:8px;
+    display:flex;
+    gap:8px;
 }
 
 .icon-btn{
-  width:40px;
-  height:40px;
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);
-  border-radius:12px;
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+    border-radius:13px;
 }
 
 /* HERO */
 
 .hero{
-  padding:90px 0 70px;
-  text-align:center;
+    max-width:1250px;
+    margin:auto;
+    padding:65px 20px 35px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:35px;
+    align-items:center;
 }
 
 .badge{
-  display:inline-flex;
-  padding:8px 15px;
-  border:1px solid rgba(124,58,237,.4);
-  background:rgba(124,58,237,.10);
-  border-radius:30px;
-  color:#c8bfff;
-  font-size:12px;
-  margin-bottom:25px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:999px;
+    background:rgba(94,231,255,.1);
+    border:1px solid rgba(94,231,255,.2);
+    color:var(--primary);
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:18px;
 }
 
 .hero h1{
-  font-size:clamp(48px,8vw,88px);
-  line-height:.95;
-  letter-spacing:-5px;
+    font-size:clamp(42px,7vw,78px);
+    line-height:.95;
+    letter-spacing:-4px;
+    max-width:800px;
 }
 
-.gradient{
-  background:linear-gradient(90deg,#fff,#a78bfa,#22d3ee);
-  -webkit-background-clip:text;
-  color:transparent;
+.gradient-text{
+    background:linear-gradient(90deg,var(--primary),#fff,var(--secondary));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
 .hero p{
-  max-width:720px;
-  margin:25px auto;
-  color:var(--muted);
-  font-size:17px;
+    margin-top:22px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+    max-width:650px;
 }
 
-.search{
-  max-width:800px;
-  margin:30px auto 15px;
-  display:flex;
-  padding:7px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:18px;
-  box-shadow:var(--shadow);
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
 }
 
-.search input{
-  flex:1;
-  min-width:0;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:var(--text);
-  padding:15px;
+.btn{
+    border:0;
+    padding:13px 19px;
+    border-radius:14px;
+    font-weight:800;
+    color:white;
+    background:linear-gradient(135deg,var(--secondary),#5c7cff);
+    box-shadow:0 10px 30px rgba(139,92,246,.2);
 }
 
-.primary{
-  border:0;
-  padding:13px 22px;
-  color:#fff;
-  font-weight:800;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--primary),var(--blue));
+.btn.primary{
+    background:linear-gradient(135deg,var(--primary),#4f8cff);
+    color:#06101b;
 }
 
-.quick{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:7px;
+.btn.ghost{
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--text);
+    box-shadow:none;
 }
 
-.quick button{
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--muted);
-  border-radius:20px;
-  padding:7px 12px;
+.hero-image{
+    min-height:430px;
+    border-radius:30px;
+    background:
+        linear-gradient(180deg,transparent 30%,rgba(0,0,0,.75)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:flex-end;
+    padding:25px;
+    overflow:hidden;
 }
 
-/* ADS */
-
-.ad{
-  min-height:90px;
-  margin:20px auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  border:1px dashed rgba(255,255,255,.18);
-  border-radius:16px;
-  color:#727d91;
-  background:rgba(255,255,255,.025);
+.hero-card{
+    width:100%;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(12px);
+    color:white;
 }
 
-.ad small{
-  letter-spacing:2px;
+.hero-card small{
+    color:#d4deeb;
+}
+
+/* SEARCH */
+
+.search-wrap{
+    max-width:1000px;
+    margin:10px auto 0;
+    padding:0 20px;
+}
+
+.search-box{
+    display:flex;
+    gap:10px;
+    padding:10px;
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.search-box input{
+    flex:1;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--text);
+    padding:12px;
+    min-width:0;
+}
+
+.search-box button{
+    border:0;
+    padding:0 20px;
+    border-radius:13px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    font-weight:900;
 }
 
 /* SECTIONS */
 
-section{
-  padding:70px 0;
+.section{
+    max-width:1250px;
+    margin:auto;
+    padding:70px 20px 20px;
 }
 
 .section-title{
-  margin-bottom:28px;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:end;
+    margin-bottom:25px;
 }
 
 .section-title h2{
-  font-size:34px;
+    font-size:32px;
+    letter-spacing:-1px;
 }
 
 .section-title p{
-  color:var(--muted);
-  margin-top:6px;
+    color:var(--muted);
+    margin-top:7px;
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
 }
 
 .card{
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:20px;
-  overflow:hidden;
-  transition:.25s;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(124,58,237,.45);
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
 }
 
-.card-icon{
-  height:180px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-  background:linear-gradient(135deg,#172554,#312e81);
+.destination-img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    display:block;
 }
 
-.card-body{padding:20px}
-
-.card h3{font-size:20px}
-
-.muted{
-  color:var(--muted);
-  font-size:13px;
+.card-content{
+    padding:17px;
 }
 
-.tags{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-  margin:14px 0;
+.card-content h3{
+    font-size:19px;
 }
 
-.tag{
-  padding:5px 8px;
-  border-radius:20px;
-  background:rgba(255,255,255,.06);
-  color:var(--muted);
-  font-size:11px;
+.card-content p{
+    color:var(--muted);
+    margin-top:7px;
+    font-size:14px;
+}
+
+.card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-top:15px;
+}
+
+.small-btn{
+    border:1px solid var(--line);
+    background:var(--card2);
+    color:var(--text);
+    padding:9px 12px;
+    border-radius:11px;
+    font-weight:800;
+}
+
+/* SERVICES */
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.service{
+    padding:22px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    transition:.25s;
+}
+
+.service:hover{
+    transform:translateY(-4px);
+    border-color:rgba(94,231,255,.35);
+}
+
+.service-icon{
+    font-size:31px;
+    margin-bottom:15px;
+}
+
+.service h3{
+    font-size:17px;
+}
+
+.service p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin:7px 0 16px;
 }
 
 .full{
-  width:100%;
-  border:0;
-  padding:12px;
-  border-radius:11px;
-  color:#fff;
-  font-weight:700;
-  background:linear-gradient(135deg,var(--primary),var(--blue));
-}
-
-/* FEATURES */
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.feature{
-  padding:23px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:18px;
-}
-
-.feature-icon{
-  font-size:34px;
-  margin-bottom:13px;
-}
-
-.feature p{
-  color:var(--muted);
-  font-size:13px;
-  margin:7px 0 18px;
-}
-
-/* AI PLANNER */
-
-.ai{
-  padding:35px;
-  border-radius:25px;
-  border:1px solid rgba(124,58,237,.35);
-  background:linear-gradient(
-    135deg,
-    rgba(124,58,237,.14),
-    rgba(37,99,235,.07)
-  );
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  margin:25px 0;
-}
-
-.field label{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  padding:13px;
-  border-radius:11px;
-  border:1px solid var(--line);
-  outline:0;
-  background:rgba(0,0,0,.20);
-  color:#fff;
-}
-
-body.light .field input,
-body.light .field select,
-body.light .field textarea{
-  color:#111827;
-  background:#fff;
+    width:100%;
+    border:0;
+    padding:11px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--secondary),#5276ff);
+    color:white;
+    font-weight:800;
 }
 
 /* MAP */
 
 .map{
-  height:370px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:
-    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),
-    #09101d;
-  background-size:40px 40px;
+    min-height:430px;
+    border-radius:25px;
+    border:1px solid var(--line);
+    background:
+        linear-gradient(rgba(5,15,28,.55),rgba(5,15,28,.7)),
+        url("https://images.unsplash.com/photo-1524666041070-9cffc3f7c5b7?auto=format&fit=crop&w=1500&q=85")
+        center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
 }
 
-.map-globe{font-size:70px}
+.map-box{
+    width:min(600px,100%);
+    text-align:center;
+    padding:30px;
+    border-radius:24px;
+    background:rgba(5,15,28,.7);
+    backdrop-filter:blur(15px);
+    color:white;
+}
+
+.map-box h2{
+    font-size:32px;
+}
+
+/* TRIP PLANNER */
+
+.planner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.panel{
+    padding:25px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:24px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    margin-bottom:7px;
+    font-size:13px;
+    color:var(--muted);
+    font-weight:700;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:13px;
+    border-radius:13px;
+    border:1px solid var(--line);
+    outline:0;
+    background:var(--bg2);
+    color:var(--text);
+}
+
+/* AD */
+
+.ad-box{
+    min-height:130px;
+    border:1px dashed rgba(94,231,255,.3);
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    background:linear-gradient(
+        135deg,
+        rgba(94,231,255,.05),
+        rgba(139,92,246,.07)
+    );
+}
+
+.ad-box strong{
+    display:block;
+    margin-bottom:7px;
+}
+
+.ad-box span{
+    color:var(--muted);
+    font-size:13px;
+}
 
 /* PRO */
 
 .pro{
-  padding:35px;
-  border-radius:25px;
-  border:1px solid rgba(245,158,11,.35);
-  background:linear-gradient(
-    135deg,
-    rgba(245,158,11,.12),
-    rgba(124,58,237,.08)
-  );
+    padding:30px;
+    border-radius:27px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(139,92,246,.35),transparent 35%),
+        linear-gradient(135deg,#111d3a,#121229);
+    color:white;
+    border:1px solid rgba(255,255,255,.1);
 }
 
-.pro-list{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin:22px 0;
-  color:#d4d9e4;
+.pro h2{
+    font-size:34px;
 }
 
-/* EMPTY */
-
-.empty{
-  text-align:center;
-  padding:45px 20px;
-  border:1px dashed var(--line);
-  border-radius:20px;
-  color:var(--muted);
+.pro p{
+    color:#b9c4d8;
+    margin:10px 0 20px;
 }
 
-/* PROFILE */
+/* FOOTER */
 
-.profile{
-  display:grid;
-  grid-template-columns:1fr 2fr;
-  gap:18px;
+footer{
+    margin-top:70px;
+    padding:45px 20px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
 }
 
-.profile-card,.settings{
-  padding:25px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:20px;
-}
-
-.avatar{
-  width:75px;
-  height:75px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--cyan));
-  font-size:32px;
-  margin-bottom:15px;
+.footer-inner{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
 /* MODAL */
 
 .modal{
-  position:fixed;
-  inset:0;
-  z-index:3000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.78);
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(10px);
 }
 
-.modal.show{display:flex}
+.modal.active{
+    display:flex;
+}
 
 .modal-box{
-  width:min(520px,100%);
-  max-height:90vh;
-  overflow:auto;
-  padding:28px;
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:#0b1020;
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:25px;
+    background:var(--card);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    margin-bottom:20px;
 }
 
 .close{
-  float:right;
-  border:0;
-  background:none;
-  color:#fff;
-  font-size:26px;
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    border:1px solid var(--line);
+    background:var(--card2);
+    color:var(--text);
+}
+
+/* RESULTS */
+
+.result{
+    margin-top:18px;
+    padding:18px;
+    border-radius:18px;
+    background:var(--card2);
+    border:1px solid var(--line);
+}
+
+.weather-temp{
+    font-size:55px;
+    font-weight:900;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+.tag{
+    padding:8px 11px;
+    border-radius:10px;
+    background:var(--card);
+    border:1px solid var(--line);
+    font-size:12px;
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
-  .navlinks{display:none}
+    .hero-grid,
+    .planner{
+        grid-template-columns:1fr;
+    }
 
-  .grid{grid-template-columns:1fr 1fr}
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .features{grid-template-columns:1fr 1fr}
+    .service-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .profile{grid-template-columns:1fr}
+    .hero-image{
+        min-height:330px;
+    }
+
 }
 
 @media(max-width:600px){
 
-  .container{
-    width:min(100% - 22px,1180px);
-  }
+    .nav-inner{
+        padding:11px 14px;
+    }
 
-  section{padding:50px 0}
+    .hero{
+        padding-top:42px;
+    }
 
-  .hero{padding:65px 0 45px}
+    .hero h1{
+        font-size:45px;
+        letter-spacing:-2.5px;
+    }
 
-  .hero h1{
-    font-size:50px;
-    letter-spacing:-3px;
-  }
+    .hero p{
+        font-size:16px;
+    }
 
-  .hero p{font-size:15px}
+    .grid,
+    .service-grid{
+        grid-template-columns:1fr;
+    }
 
-  .search{
-    flex-direction:column;
-    gap:7px;
-  }
+    .search-box{
+        flex-direction:column;
+    }
 
-  .search .primary{
-    width:100%;
-  }
+    .search-box button{
+        padding:13px;
+    }
 
-  .grid,
-  .features,
-  .form-grid,
-  .pro-list{
-    grid-template-columns:1fr;
-  }
+    .section{
+        padding-top:50px;
+    }
 
-  .ai,.pro{
-    padding:24px 18px;
-  }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- NAVBAR -->
 
-<header class="navbar">
+<nav class="navbar">
 
-<div class="container nav">
+<div class="nav-inner">
 
-<a href="#" class="logo">
-🌍 Voynexa <span>AI</span>
+<a href="#top" class="logo">
+
+<div class="logo-icon">✈️</div>
+
+<span>Voynexa</span>
+
 </a>
-
-<nav class="navlinks">
-<a href="#explorer">Explore</a>
-<a href="#planner">AI Planner</a>
-<a href="#services">Services</a>
-<a href="#trips">My Trips</a>
-<a href="#profile">Profile</a>
-</nav>
 
 <div class="nav-actions">
 
 <button class="icon-btn" onclick="toggleTheme()">🌙</button>
 
-<button class="icon-btn" onclick="showNotifications()">🔔</button>
+<button class="icon-btn" onclick="openModal('notifications')">
+🔔
+</button>
+
+<button class="icon-btn" onclick="openModal('profile')">
+👤
+</button>
 
 </div>
 
 </div>
 
-</header>
+</nav>
 
+
+<main id="top">
 
 <!-- HERO -->
 
-<main>
-
 <section class="hero">
 
-<div class="container">
-
-<div class="badge">
-✨ AI TRAVEL INTELLIGENCE • WORLD EXPLORER
-</div>
-
-<h1>
-Travel Smarter.<br>
-<span class="gradient">Explore More.</span>
-</h1>
-
-<p>
-Discover amazing destinations, plan personalized journeys,
-find hotels, activities and travel inspiration with Voynexa AI.
-</p>
-
-<div class="search">
-
-<input
-id="searchInput"
-placeholder="🔎 Search any city or country..."
-oninput="searchDestinations()"
->
-
-<button class="primary" onclick="searchDestinations()">
-Search
-</button>
-
-</div>
-
-<div class="quick">
-
-<button onclick="quick('Dubai')">🇦🇪 Dubai</button>
-<button onclick="quick('Paris')">🇫🇷 Paris</button>
-<button onclick="quick('Tokyo')">🇯🇵 Tokyo</button>
-<button onclick="quick('Erbil')">🇮🇶 Erbil</button>
-<button onclick="quick('Istanbul')">🇹🇷 Istanbul</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TOP AD -->
-
-<div class="container">
-
-<div class="ad">
-<small>ADVERTISEMENT<br>AD NETWORK WILL BE CONNECTED LATER</small>
-</div>
-
-</div>
-
-
-<!-- WORLD EXPLORER -->
-
-<section id="explorer">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>🌍 World Explorer</h2>
-
-<p>Discover destinations around the world.</p>
-
-</div>
-
-<div class="grid" id="destinations">
-
-
-<div class="card destination" data-name="dubai united arab emirates">
-
-<div class="card-icon">🏙️</div>
-
-<div class="card-body">
-
-<h3>Dubai 🇦🇪</h3>
-
-<p class="muted">United Arab Emirates</p>
-
-<div class="tags">
-<span class="tag">Luxury</span>
-<span class="tag">Shopping</span>
-<span class="tag">Adventure</span>
-</div>
-
-<button class="full" onclick="openDestination('Dubai')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card destination" data-name="paris france">
-
-<div class="card-icon">🗼</div>
-
-<div class="card-body">
-
-<h3>Paris 🇫🇷</h3>
-
-<p class="muted">France</p>
-
-<div class="tags">
-<span class="tag">Culture</span>
-<span class="tag">Food</span>
-<span class="tag">History</span>
-</div>
-
-<button class="full" onclick="openDestination('Paris')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card destination" data-name="tokyo japan">
-
-<div class="card-icon">🗼</div>
-
-<div class="card-body">
-
-<h3>Tokyo 🇯🇵</h3>
-
-<p class="muted">Japan</p>
-
-<div class="tags">
-<span class="tag">Technology</span>
-<span class="tag">Food</span>
-<span class="tag">Culture</span>
-</div>
-
-<button class="full" onclick="openDestination('Tokyo')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card destination" data-name="erbil iraq kurdistan">
-
-<div class="card-icon">🏰</div>
-
-<div class="card-body">
-
-<h3>Erbil 🇮🇶</h3>
-
-<p class="muted">Iraq • Kurdistan</p>
-
-<div class="tags">
-<span class="tag">History</span>
-<span class="tag">Culture</span>
-<span class="tag">Food</span>
-</div>
-
-<button class="full" onclick="openDestination('Erbil')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card destination" data-name="istanbul turkey">
-
-<div class="card-icon">🕌</div>
-
-<div class="card-body">
-
-<h3>Istanbul 🇹🇷</h3>
-
-<p class="muted">Türkiye</p>
-
-<div class="tags">
-<span class="tag">History</span>
-<span class="tag">Shopping</span>
-<span class="tag">Food</span>
-</div>
-
-<button class="full" onclick="openDestination('Istanbul')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card destination" data-name="new york united states america usa">
-
-<div class="card-icon">🗽</div>
-
-<div class="card-body">
-
-<h3>New York 🇺🇸</h3>
-
-<p class="muted">United States</p>
-
-<div class="tags">
-<span class="tag">City</span>
-<span class="tag">Shopping</span>
-<span class="tag">Entertainment</span>
-</div>
-
-<button class="full" onclick="openDestination('New York')">
-Explore
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
-<div id="noResults" class="empty" style="display:none;margin-top:20px">
-🔎 No demo destination found.<br>
-Global destination API will be connected later.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- AI PLANNER -->
-
-<section id="planner">
-
-<div class="container">
-
-<div class="ai">
-
-<div class="section-title">
-
-<h2>🤖 AI Trip Planner</h2>
-
-<p>Create your personalized travel plan.</p>
-
-</div>
-
-<div class="form-grid">
-
-<div class="field">
-
-<label>Destination</label>
-
-<input id="destination" placeholder="e.g. Dubai">
-
-</div>
-
-<div class="field">
-
-<label>Number of days</label>
-
-<input id="days" type="number" min="1" placeholder="5">
-
-</div>
-
-<div class="field">
-
-<label>Budget</label>
-
-<input id="budget" placeholder="$1000">
-
-</div>
-
-<div class="field">
-
-<label>Travel style</label>
-
-<select id="style">
-
-<option>Adventure</option>
-<option>Luxury</option>
-<option>Family</option>
-<option>Culture</option>
-<option>Relaxation</option>
-<option>Food & Shopping</option>
-
-</select>
-
-</div>
-
-</div>
-
-<button class="primary" onclick="generatePlan()">
-✨ Generate My Trip
-</button>
-
-<div id="planResult" style="margin-top:20px"></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- MAP -->
-
-<section>
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>🗺️ World Map</h2>
-
-<p>Interactive world map ready for API integration.</p>
-
-</div>
-
-<div class="map">
+<div class="hero-grid">
 
 <div>
 
-<div class="map-globe">🌍</div>
+<div class="badge">
+🌍 AI-POWERED WORLD EXPLORER
+</div>
 
-<h3>Voynexa World Map</h3>
+<h1>
+Explore the
+<span class="gradient-text">
+world differently.
+</span>
+</h1>
 
-<p class="muted">
-Map API will be connected in the next stage.
+<p>
+Discover destinations, plan intelligent trips,
+check weather, explore attractions and organize
+your journey with Voynexa.
 </p>
+
+<div class="hero-buttons">
+
+<button class="btn primary"
+onclick="scrollToSection('planner')">
+🤖 Plan My Trip
+</button>
+
+<button class="btn ghost"
+onclick="scrollToSection('destinations')">
+🌍 Explore World
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hero-image">
+
+<div class="hero-card">
+
+<small>FEATURED DESTINATION</small>
+
+<h2>Dubai, United Arab Emirates</h2>
+
+<p>
+🏙️ Luxury · Adventure · Culture
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-wrap">
+
+<div class="search-box">
+
+<input
+id="globalSearch"
+placeholder="🔎 Search any city, country or destination..."
+>
+
+<button onclick="globalSearch()">
+SEARCH
+</button>
+
+</div>
+
+<div id="searchResult"></div>
+
+</div>
+
+
+<!-- DESTINATIONS -->
+
+<section class="section" id="destinations">
+
+<div class="section-title">
+
+<div>
+
+<h2>🌍 Popular Destinations</h2>
+
+<p>Real destination photography and travel inspiration.</p>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+
+<!-- PARIS -->
+
+<div class="card">
+
+<img
+class="destination-img"
+src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85"
+alt="Paris"
+>
+
+<div class="card-content">
+
+<h3>🇫🇷 Paris</h3>
+
+<p>
+France · Europe
+</p>
+
+<div class="card-footer">
+
+<strong>🗼 City of Light</strong>
+
+<button class="small-btn"
+onclick="explore('Paris')">
+Explore
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ERBIL -->
+
+<div class="card">
+
+<img
+class="destination-img"
+src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=900&q=85"
+alt="Erbil"
+>
+
+<div class="card-content">
+
+<h3>🇮🇶 Erbil</h3>
+
+<p>
+Iraq · Kurdistan Region
+</p>
+
+<div class="card-footer">
+
+<strong>🏛️ Ancient City</strong>
+
+<button class="small-btn"
+onclick="explore('Erbil')">
+Explore
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DUBAI -->
+
+<div class="card">
+
+<img
+class="destination-img"
+src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85"
+alt="Dubai"
+>
+
+<div class="card-content">
+
+<h3>🇦🇪 Dubai</h3>
+
+<p>
+United Arab Emirates
+</p>
+
+<div class="card-footer">
+
+<strong>🏙️ Luxury</strong>
+
+<button class="small-btn"
+onclick="explore('Dubai')">
+Explore
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ISTANBUL -->
+
+<div class="card">
+
+<img
+class="destination-img"
+src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=85"
+alt="Istanbul"
+>
+
+<div class="card-content">
+
+<h3>🇹🇷 Istanbul</h3>
+
+<p>
+Türkiye · Europe & Asia
+</p>
+
+<div class="card-footer">
+
+<strong>🕌 Culture</strong>
+
+<button class="small-btn"
+onclick="explore('Istanbul')">
+Explore
+</button>
+
+</div>
 
 </div>
 
@@ -923,206 +967,141 @@ Map API will be connected in the next stage.
 
 <!-- SERVICES -->
 
-<section id="services">
-
-<div class="container">
+<section class="section">
 
 <div class="section-title">
 
-<h2>✈️ Travel Services</h2>
+<div>
 
-<p>Everything for your next adventure.</p>
+<h2>🚀 Everything for your journey</h2>
+
+<p>One travel platform for planning and discovery.</p>
 
 </div>
 
-<div class="features">
+</div>
 
 
-<div class="feature">
+<div class="service-grid">
 
-<div class="feature-icon">🏨</div>
 
+<div class="service">
+<div class="service-icon">🤖</div>
+<h3>AI Trip Planner</h3>
+<p>Create an intelligent itinerary based on destination, days and budget.</p>
+<button class="full" onclick="scrollToSection('planner')">
+Plan Trip
+</button>
+</div>
+
+
+<div class="service">
+<div class="service-icon">🗺️</div>
+<h3>World Map</h3>
+<p>Explore the planet and discover destinations.</p>
+<button class="full" onclick="scrollToSection('map')">
+Explore Map
+</button>
+</div>
+
+
+<div class="service">
+<div class="service-icon">🏨</div>
 <h3>Hotels</h3>
-
-<p>Discover accommodation and hotel options.</p>
-
-<button class="full" onclick="service('Hotels')">
-Explore Hotels
+<p>Find accommodation for your next adventure.</p>
+<button class="full" onclick="openBooking('hotels')">
+Find Hotels
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">✈️</div>
-
+<div class="service">
+<div class="service-icon">✈️</div>
 <h3>Flights</h3>
-
-<p>Search and compare flight options.</p>
-
-<button class="full" onclick="service('Flights')">
-Search Flights
+<p>Prepare your flight search and travel plans.</p>
+<button class="full" onclick="openFeature('Flights')">
+Explore Flights
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">🎟️</div>
-
+<div class="service">
+<div class="service-icon">🎟️</div>
 <h3>Tours & Activities</h3>
-
-<p>Discover tours and memorable activities.</p>
-
-<button class="full" onclick="service('Tours & Activities')">
-Explore
+<p>Discover experiences and activities around the world.</p>
+<button class="full" onclick="openFeature('Tours & Activities')">
+Explore Tours
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">📍</div>
-
+<div class="service">
+<div class="service-icon">📍</div>
 <h3>Attractions</h3>
-
-<p>Discover famous places and attractions.</p>
-
-<button class="full" onclick="service('Attractions')">
-Explore
+<p>Discover famous landmarks and hidden places.</p>
+<button class="full" onclick="openFeature('Attractions')">
+Discover
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">🍽️</div>
-
+<div class="service">
+<div class="service-icon">🍽️</div>
 <h3>Restaurants</h3>
-
-<p>Find restaurants around your destination.</p>
-
-<button class="full" onclick="service('Restaurants')">
-Find Restaurants
+<p>Find restaurants and food experiences.</p>
+<button class="full" onclick="openFeature('Restaurants')">
+Find Food
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">🌤️</div>
-<div class="feature">
-    <div class="feature-icon">🌤️</div>
-
-    <h3>Weather</h3>
-
-    <p>
-        Get real-time weather for any city in the world.
-    </p>
-
-    <button class="full" onclick="openWeather()">
-        🌤️ Check Weather
-    </button>
-</div>
-
+<div class="service">
+<div class="service-icon">🌤️</div>
+<h3>Weather</h3>
+<p>Get live weather information for destinations.</p>
+<button class="full" onclick="openWeather()">
+Check Weather
+</button>
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">❤️</div>
-
+<div class="service">
+<div class="service-icon">❤️</div>
 <h3>Favorites</h3>
-
 <p>Save destinations you love.</p>
-
-<button class="full" onclick="scrollToId('favorites')">
-View Favorites
+<button class="full" onclick="openFeature('Favorites')">
+My Favorites
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">🧳</div>
-
+<div class="service">
+<div class="service-icon">🧳</div>
 <h3>My Trips</h3>
-
-<p>Keep your travel plans organized.</p>
-
-<button class="full" onclick="scrollToId('trips')">
+<p>Organize and manage your travel plans.</p>
+<button class="full" onclick="openFeature('My Trips')">
 My Trips
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">💰</div>
-
+<div class="service">
+<div class="service-icon">💰</div>
 <h3>Budget Planner</h3>
-
 <p>Estimate your travel expenses.</p>
-
 <button class="full" onclick="openBudget()">
-Calculate
+Plan Budget
 </button>
-
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">🏨</div>
-
-<h3>Booking.com</h3>
-
-<p>Ready for future hotel affiliate integration.</p>
-
-<button class="full" onclick="bookingInfo()">
-View Hotels
+<div class="service">
+<div class="service-icon">💎</div>
+<h3>Voynexa Pro</h3>
+<p>Premium travel tools and future exclusive features.</p>
+<button class="full" onclick="openFeature('Voynexa Pro')">
+Discover Pro
 </button>
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">🔔</div>
-
-<h3>Notifications</h3>
-
-<p>Travel alerts and recommendations.</p>
-
-<button class="full" onclick="showNotifications()">
-Notifications
-</button>
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">👤</div>
-
-<h3>Profile</h3>
-
-<p>Manage your account and preferences.</p>
-
-<button class="full" onclick="scrollToId('profile')">
-Open Profile
-</button>
-
-</div>
-
-
 </div>
 
 </div>
@@ -1130,140 +1109,215 @@ Open Profile
 </section>
 
 
-<!-- MID AD -->
+<!-- MAP -->
 
-<div class="container">
-
-<div class="ad">
-<small>ADVERTISEMENT<br>FUTURE AD NETWORK PLACEMENT</small>
-</div>
-
-</div>
-
-
-<!-- FAVORITES -->
-
-<section id="favorites">
-
-<div class="container">
+<section class="section" id="map">
 
 <div class="section-title">
 
-<h2>❤️ Favorites</h2>
+<div>
 
-<p>Your saved destinations.</p>
+<h2>🗺️ World Explorer Map</h2>
 
-</div>
+<p>Your future global travel map.</p>
 
-<div id="favoriteList" class="empty">
-❤️ No favorites yet.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- MY TRIPS -->
-
-<section id="trips">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>🧳 My Trips</h2>
-
-<p>Your saved travel plans.</p>
-
-</div>
-
-<div id="tripList" class="empty">
-🧳 No trips created yet.
 </div>
 
 </div>
 
-</section>
+<div class="map">
 
+<div class="map-box">
 
-<!-- PROFILE -->
+<h2>🌍 Explore the World</h2>
 
-<section id="profile">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>👤 Profile / Account</h2>
-
-<p>Your Voynexa travel profile.</p>
-
-</div>
-
-<div class="profile">
-
-<div class="profile-card">
-
-<div class="avatar">👤</div>
-
-<h3>Guest Traveler</h3>
-
-<p class="muted">
-Account system will be connected later.
+<p style="margin-top:12px;color:#c4d0df;">
+Interactive world map coming with Maps API.
 </p>
 
 <br>
 
-<button class="full" onclick="accountInfo()">
-Sign In / Create Account
+<button class="btn primary"
+onclick="openFeature('World Map')">
+Explore Destinations
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AI PLANNER -->
+
+<section class="section" id="planner">
+
+<div class="section-title">
+
+<div>
+
+<h2>🤖 AI Trip Planner</h2>
+
+<p>Create your personalized travel plan.</p>
+
+</div>
+
+</div>
+
+
+<div class="planner">
+
+
+<div class="panel">
+
+<div class="field">
+
+<label>Destination</label>
+
+<input
+id="tripDestination"
+placeholder="e.g. Paris, Dubai, Erbil"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Number of days</label>
+
+<input
+id="tripDays"
+type="number"
+min="1"
+max="30"
+value="5"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Budget</label>
+
+<input
+id="tripBudget"
+type="number"
+placeholder="1000"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Travel style</label>
+
+<select id="tripStyle">
+
+<option>Adventure</option>
+<option>Luxury</option>
+<option>Culture</option>
+<option>Family</option>
+<option>Relaxation</option>
+<option>Budget</option>
+
+</select>
+
+</div>
+
+
+<button class="btn primary"
+style="width:100%;"
+onclick="generateTrip()">
+
+✨ Generate My Trip
+
 </button>
 
 </div>
 
 
-<div class="settings">
+<div class="panel">
 
-<h3>⚙️ Travel Preferences</h3>
+<h3>✨ Your itinerary</h3>
 
-<br>
+<div id="tripResult" class="result">
 
-<div class="field">
-
-<label>Currency</label>
-
-<select>
-
-<option>USD</option>
-<option>EUR</option>
-<option>IQD</option>
-<option>GBP</option>
-
-</select>
-
-</div>
-
-<br>
-
-<div class="field">
-
-<label>Preferred Travel Style</label>
-
-<select>
-
-<option>Adventure</option>
-<option>Luxury</option>
-<option>Family</option>
-<option>Culture</option>
-<option>Relaxation</option>
-
-</select>
+<p style="color:var(--muted);">
+Your AI-generated itinerary will appear here.
+</p>
 
 </div>
 
 </div>
 
 </div>
+
+</section>
+
+
+<!-- AD -->
+
+<section class="section">
+
+<div class="ad-box">
+
+<div>
+
+<strong>📢 AD SPACE</strong>
+
+<span>
+Future monetization area — Ad network integration will be added later.
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOOKING -->
+
+<section class="section">
+
+<div class="panel">
+
+<div class="section-title">
+
+<div>
+
+<h2>🏨 Book your stay</h2>
+
+<p>
+Search hotels through our future Booking integration.
+</p>
+
+</div>
+
+</div>
+
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+
+<button class="btn primary"
+onclick="openBooking('hotels')">
+🏨 Search Hotels
+</button>
+
+<button class="btn ghost"
+onclick="openBooking('travel')">
+🌍 Booking.com
+</button>
+
+</div>
+
+<p style="margin-top:15px;color:var(--muted);font-size:13px;">
+Affiliate tracking will be connected after the official affiliate setup.
+</p>
 
 </div>
 
@@ -1272,184 +1326,82 @@ Sign In / Create Account
 
 <!-- PRO -->
 
-<section>
-
-<div class="container">
+<section class="section">
 
 <div class="pro">
 
-<h2>💎 Voynexa Pro</h2>
-
-<p class="muted">
-Premium features are prepared for future activation.
-</p>
-
-<div class="pro-list">
-
-<div>✓ Advanced AI Trip Planning</div>
-<div>✓ Unlimited Saved Trips</div>
-<div>✓ Smart Budget Tools</div>
-<div>✓ Premium Destination Insights</div>
-<div>✓ Advanced Travel Recommendations</div>
-<div>✓ Ad-free experience</div>
-
+<div class="badge">
+💎 VOYNEXA PRO
 </div>
 
-<button class="primary" onclick="proInfo()">
-✨ Explore Pro
+<h2>Travel smarter.</h2>
+
+<p>
+Future premium features can include advanced AI planning,
+unlimited saved trips, intelligent recommendations and more.
+</p>
+
+<button class="btn primary"
+onclick="openFeature('Voynexa Pro')">
+Explore Pro
 </button>
 
 </div>
 
-</div>
-
 </section>
 
-
-<!-- MONETIZATION -->
-
-<section>
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>💰 Monetization</h2>
-
-<p>Future revenue channels for Voynexa.</p>
-
-</div>
-
-<div class="features">
-
-<div class="feature">
-
-<div class="feature-icon">📢</div>
-
-<h3>Advertising</h3>
-
-<p>
-Ad spaces are prepared for future ad network integration.
-</p>
-
-</div>
-
-<div class="feature">
-
-<div class="feature-icon">🏨</div>
-
-<h3>Hotel Affiliate</h3>
-
-<p>
-Eligible hotel bookings can become a future commission channel.
-</p>
-
-</div>
-
-<div class="feature">
-
-<div class="feature-icon">🎟️</div>
-
-<h3>Activities Affiliate</h3>
-
-<p>
-Tours and activities can later connect to affiliate partners.
-</p>
-
-</div>
-
-<div class="feature">
-
-<div class="feature-icon">💎</div>
-
-<h3>Pro Subscription</h3>
-
-<p>
-Premium features can become a future subscription product.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- NOTIFICATIONS -->
-
-<section id="notifications">
-
-<div class="container">
-
-<div class="section-title">
-
-<h2>🔔 Notifications</h2>
-
-<p>Your travel alerts and updates.</p>
-
-</div>
-
-<div id="notificationBox" class="empty">
-🔔 No new notifications.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- BOTTOM AD -->
-
-<div class="container">
-
-<div class="ad">
-<small>ADVERTISEMENT<br>MONETIZATION SYSTEM WILL BE CONNECTED LATER</small>
-</div>
-
-</div>
 
 </main>
 
 
-<!-- FOOTER -->
-
-<footer style="
-border-top:1px solid var(--line);
-padding:45px 15px;
-text-align:center;
-color:var(--muted);
-">
-
-<div class="logo">
-🌍 Voynexa <span>AI</span>
-</div>
-
-<p style="margin-top:10px">
-Explore Beyond Limits.
-</p>
-
-<p style="margin-top:20px;font-size:12px">
-© 2026 Voynexa AI
-</p>
-
-</footer>
-
-
 <!-- MODAL -->
 
-<div id="modal" class="modal">
+<div class="modal" id="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal()">×</button>
+<div class="modal-head">
+
+<h2 id="modalTitle">Voynexa</h2>
+
+<button class="close" onclick="closeModal()">
+✕
+</button>
+
+</div>
 
 <div id="modalContent"></div>
 
 </div>
 
 </div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-inner">
+
+<div>
+
+<strong style="color:var(--text);font-size:20px;">
+✈️ Voynexa
+</strong>
+
+<p style="margin-top:8px;">
+AI Travel & World Explorer
+</p>
+
+</div>
+
+<div>
+© 2026 Voynexa
+</div>
+
+</div>
+
+</footer>
 
 
 <script>
@@ -1463,7 +1415,8 @@ document.body.classList.toggle("light");
 localStorage.setItem(
 "voynexaTheme",
 document.body.classList.contains("light")
-?"light":"dark"
+? "light"
+: "dark"
 );
 
 }
@@ -1473,375 +1426,573 @@ document.body.classList.add("light");
 }
 
 
-/* NAVIGATION */
+/* SCROLL */
 
-function scrollToId(id){
+function scrollToSection(id){
 
-const element=document.getElementById(id);
-
-if(element){
-element.scrollIntoView({behavior:"smooth"});
-}
-
-}
-
-
-/* SEARCH */
-
-function searchDestinations(){
-
-const query=
-document.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
-
-const cards=
-document.querySelectorAll(".destination");
-
-let found=0;
-
-cards.forEach(card=>{
-
-const name=
-card.dataset.name.toLowerCase();
-
-if(!query || name.includes(query)){
-
-card.style.display="block";
-found++;
-
-}else{
-
-card.style.display="none";
-
-}
-
+document.getElementById(id)
+?.scrollIntoView({
+behavior:"smooth"
 });
 
-document.getElementById("noResults").style.display=
-found===0 ? "block":"none";
+}
+
+
+/* MODAL */
+
+function openModal(type,title="Voynexa"){
+
+const modal=document.getElementById("modal");
+const modalTitle=document.getElementById("modalTitle");
+const content=document.getElementById("modalContent");
+
+modalTitle.textContent=title;
+
+if(type==="notifications"){
+
+content.innerHTML=`
+
+<div class="result">
+
+<h3>🔔 Notifications</h3>
+
+<p style="margin-top:10px;color:var(--muted);">
+You don't have any new notifications.
+</p>
+
+</div>
+
+`;
 
 }
 
-function quick(city){
+else if(type==="profile"){
 
-document.getElementById("searchInput").value=city;
+content.innerHTML=`
 
-searchDestinations();
+<div class="result">
 
-scrollToId("explorer");
+<h3>👤 Profile</h3>
+
+<p style="margin-top:10px;color:var(--muted);">
+Account and authentication will be connected with the backend later.
+</p>
+
+<br>
+
+<button class="btn primary"
+onclick="openFeature('Account')">
+Account
+</button>
+
+</div>
+
+`;
+
+}
+
+modal.classList.add("active");
+
+}
+
+
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("active");
+
+}
+
+
+/* FEATURE */
+
+function openFeature(name){
+
+openModal(
+"feature",
+name
+);
+
+document.getElementById("modalContent").innerHTML=`
+
+<div class="result">
+
+<h3>🚀 ${name}</h3>
+
+<p style="margin-top:12px;color:var(--muted);line-height:1.7;">
+
+The ${name} module is ready in the Voynexa interface.
+
+<br><br>
+
+Real API/backend functionality will be connected in the next development phase.
+
+</p>
+
+</div>
+
+`;
 
 }
 
 
 /* DESTINATION */
 
-function openDestination(name){
+function explore(city){
 
-addFavorite(name);
+openModal(
+"destination",
+city
+);
 
-showModal(`
+document.getElementById("modalContent").innerHTML=`
 
-<h2>🌍 ${name}</h2>
+<div class="result">
 
-<br>
+<h2>🌍 ${city}</h2>
 
-<p class="muted">
-Your destination dashboard is ready.
-Real destination data will be connected through APIs later.
+<p style="margin-top:10px;color:var(--muted);">
+Explore hotels, attractions, restaurants, weather,
+activities and personalized trips for ${city}.
 </p>
 
 <br>
 
-<div class="features" style="grid-template-columns:1fr 1fr">
-
-<div class="feature">🌤️ Weather</div>
-<div class="feature">📍 Attractions</div>
-<div class="feature">🏨 Hotels</div>
-<div class="feature">🍽️ Restaurants</div>
-
-</div>
-
-<br>
-
-<button class="full"
-onclick="startPlanner('${name}')">
-
-🤖 Plan My Trip
-
+<button class="btn primary"
+onclick="setDestination('${city}')">
+🤖 Plan a ${city} Trip
 </button>
 
-`);
-
-}
-
-
-/* FAVORITES */
-
-function getFavorites(){
-
-return JSON.parse(
-localStorage.getItem("voynexaFavorites")||"[]"
-);
-
-}
-
-function addFavorite(name){
-
-let list=getFavorites();
-
-if(!list.includes(name)){
-list.push(name);
-}
-
-localStorage.setItem(
-"voynexaFavorites",
-JSON.stringify(list)
-);
-
-renderFavorites();
-
-}
-
-function renderFavorites(){
-
-const box=
-document.getElementById("favoriteList");
-
-const list=getFavorites();
-
-if(!list.length){
-
-box.innerHTML="❤️ No favorites yet.";
-
-return;
-
-}
-
-box.innerHTML=list.map(name=>`
-
-<div style="
-display:inline-block;
-margin:5px;
-padding:10px 14px;
-border-radius:20px;
-background:rgba(124,58,237,.14);
-border:1px solid rgba(124,58,237,.3);
-">
-
-❤️ ${escapeHTML(name)}
-
 </div>
 
-`).join("");
+`;
 
 }
 
-renderFavorites();
 
-
-/* AI */
-
-function startPlanner(name){
-
-document.getElementById("destination").value=name;
+function setDestination(city){
 
 closeModal();
 
-scrollToId("planner");
+document.getElementById("tripDestination")
+.value=city;
+
+scrollToSection("planner");
 
 }
 
-function generatePlan(){
 
-const destination=
-document.getElementById("destination").value.trim()
-||"your destination";
+/* GLOBAL SEARCH */
 
-const days=
-document.getElementById("days").value||"3";
+function globalSearch(){
 
-const budget=
-document.getElementById("budget").value||"your budget";
+const value=
+document.getElementById("globalSearch")
+.value.trim();
 
-const style=
-document.getElementById("style").value;
+const result=
+document.getElementById("searchResult");
 
-document.getElementById("planResult").innerHTML=`
+if(!value){
 
-<div style="
-padding:20px;
-border-radius:18px;
-background:rgba(34,211,238,.06);
-border:1px solid rgba(34,211,238,.18);
-">
-
-<h3>🤖 Voynexa AI — Demo Plan</h3>
-
-<br>
-
-<p>🌍 Destination:
-<strong>${escapeHTML(destination)}</strong></p>
-
-<p>📅 Duration:
-<strong>${escapeHTML(days)} days</strong></p>
-
-<p>💰 Budget:
-<strong>${escapeHTML(budget)}</strong></p>
-
-<p>🎯 Style:
-<strong>${escapeHTML(style)}</strong></p>
-
-<br>
-
-<p class="muted">
-Day 1 → City exploration<br>
-Day 2 → Major attractions<br>
-Day 3 → Food & local experiences
-</p>
-
-<br>
-
-<small class="muted">
-Demo mode. Real AI will be connected securely through a backend later.
-</small>
-
+result.innerHTML=`
+<div class="result">
+Please enter a destination.
 </div>
 `;
-
-saveTrip(destination,days,budget,style);
-
-}
-
-
-/* TRIPS */
-
-function saveTrip(destination,days,budget,style){
-
-let trips=JSON.parse(
-localStorage.getItem("voynexaTrips")||"[]"
-);
-
-trips.push({
-destination,
-days,
-budget,
-style,
-date:new Date().toLocaleDateString()
-});
-
-localStorage.setItem(
-"voynexaTrips",
-JSON.stringify(trips)
-);
-
-renderTrips();
-
-}
-
-function renderTrips(){
-
-const box=document.getElementById("tripList");
-
-const trips=JSON.parse(
-localStorage.getItem("voynexaTrips")||"[]"
-);
-
-if(!trips.length){
-
-box.innerHTML="🧳 No trips created yet.";
 
 return;
 
 }
 
-box.innerHTML=trips.slice(-5).reverse().map(t=>`
+result.innerHTML=`
 
-<div style="
-padding:18px;
-margin:8px 0;
-border:1px solid var(--line);
-border-radius:15px;
-text-align:left;
-background:var(--card);
-">
+<div class="result">
 
-<strong>🌍 ${escapeHTML(t.destination)}</strong>
+<h3>🔎 Searching for ${escapeHTML(value)}...</h3>
+
+<p style="margin-top:8px;color:var(--muted);">
+Global Search API will connect here later.
+</p>
 
 <br>
 
-<span class="muted">
-${escapeHTML(t.days)} days •
-${escapeHTML(t.budget)} •
-${escapeHTML(t.style)}
+<button class="btn primary"
+onclick="setDestination('${escapeJS(value)}')">
+🤖 Plan Trip
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* WEATHER */
+
+function openWeather(){
+
+openModal(
+"weather",
+"🌤️ Weather"
+);
+
+document.getElementById("modalContent").innerHTML=`
+
+<div class="field">
+
+<label>City</label>
+
+<input
+id="weatherCity"
+placeholder="Dubai, Paris, Erbil..."
+>
+
+</div>
+
+<button class="btn primary"
+style="width:100%;"
+onclick="getWeather()">
+
+🌤️ Get Weather
+
+</button>
+
+<div id="weatherResult"></div>
+
+`;
+
+}
+
+
+/* REAL OPEN-METEO WEATHER */
+
+async function getWeather(){
+
+const city=
+document.getElementById("weatherCity")
+.value
+.trim();
+
+const result=
+document.getElementById("weatherResult");
+
+if(!city){
+
+result.innerHTML=`
+
+<div class="result">
+⚠️ Please enter a city.
+</div>
+
+`;
+
+return;
+
+}
+
+result.innerHTML=`
+
+<div class="result">
+🌍 Finding ${escapeHTML(city)}...
+</div>
+
+`;
+
+try{
+
+const geoURL=
+"https://geocoding-api.open-meteo.com/v1/search"
++
+"?name="+encodeURIComponent(city)
++
+"&count=1&language=en&format=json";
+
+const geoResponse=
+await fetch(geoURL);
+
+const geo=
+await geoResponse.json();
+
+if(!geo.results || !geo.results.length){
+
+result.innerHTML=`
+
+<div class="result">
+❌ City not found.
+</div>
+
+`;
+
+return;
+
+}
+
+const location=geo.results[0];
+
+const weatherURL=
+"https://api.open-meteo.com/v1/forecast"
++
+"?latitude="+location.latitude
++
+"&longitude="+location.longitude
++
+"&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m"
++
+"&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max"
++
+"&timezone=auto";
+
+const weatherResponse=
+await fetch(weatherURL);
+
+const weather=
+await weatherResponse.json();
+
+const current=
+weather.current;
+
+const daily=
+weather.daily;
+
+result.innerHTML=`
+
+<div class="result">
+
+<h2>
+${getWeatherIcon(current.weather_code)}
+${escapeHTML(location.name)}
+</h2>
+
+<p style="color:var(--muted);margin-top:5px;">
+${escapeHTML(location.country || "")}
+</p>
+
+<div class="weather-temp">
+${Math.round(current.temperature_2m)}°C
+</div>
+
+<p>
+${getWeatherText(current.weather_code)}
+</p>
+
+<div class="tags">
+
+<span class="tag">
+🌡️ Feels ${Math.round(current.apparent_temperature)}°C
+</span>
+
+<span class="tag">
+💧 ${current.relative_humidity_2m}%
+</span>
+
+<span class="tag">
+💨 ${Math.round(current.wind_speed_10m)} km/h
+</span>
+
+<span class="tag">
+🌧️ ${current.precipitation} mm
 </span>
 
 </div>
 
-`).join("");
-
-}
-
-renderTrips();
-
-
-/* SERVICES */
-
-function service(name){
-
-showModal(`
-
-<h2>✨ ${escapeHTML(name)}</h2>
-
-<br>
-
-<p class="muted">
-The ${escapeHTML(name)} interface is ready.
-The real API will be connected during the next development stage.
-</p>
-
-<br>
-
-<button class="full" onclick="closeModal()">
-Continue
-</button>
-
-`);
-
-}
-
-
-/* BOOKING */
-
-function bookingInfo(){
-
-showModal(`
-
-<h2>🏨 Booking.com Integration</h2>
-
-<br>
-
-<p class="muted">
-The hotel section is prepared for a future Booking.com affiliate integration.
-</p>
-
 <br>
 
 <p>
-🏨 Hotel search<br>
-📅 Availability<br>
-💰 Affiliate tracking<br>
-🔗 Partner links
+🔺 High:
+<strong>
+${Math.round(daily.temperature_2m_max[0])}°C
+</strong>
+</p>
+
+<p style="margin-top:7px;">
+🔻 Low:
+<strong>
+${Math.round(daily.temperature_2m_min[0])}°C
+</strong>
+</p>
+
+<p style="margin-top:7px;">
+🌧️ Rain probability:
+<strong>
+${daily.precipitation_probability_max[0]}%
+</strong>
 </p>
 
 <br>
 
-<small class="muted">
-No fake booking link is being used. The official affiliate integration will be connected later.
+<small style="color:var(--muted);">
+Weather data powered by Open-Meteo.
 </small>
 
-`);
+</div>
+
+`;
+
+}catch(error){
+
+console.error(error);
+
+result.innerHTML=`
+
+<div class="result">
+
+❌ Weather could not be loaded.
+
+<br><br>
+
+Check your internet connection and try again.
+
+</div>
+
+`;
+
+}
+
+}
+
+
+function getWeatherText(code){
+
+if(code===0)return"Clear sky";
+
+if(code<=3)return"Partly cloudy";
+
+if(code===45||code===48)return"Foggy";
+
+if(code>=51&&code<=57)return"Drizzle";
+
+if(code>=61&&code<=67)return"Rain";
+
+if(code>=71&&code<=77)return"Snow";
+
+if(code>=80&&code<=82)return"Rain showers";
+
+if(code>=85&&code<=86)return"Snow showers";
+
+if(code>=95)return"Thunderstorm";
+
+return"Unknown";
+
+}
+
+
+function getWeatherIcon(code){
+
+if(code===0)return"☀️";
+
+if(code<=2)return"🌤️";
+
+if(code===3)return"☁️";
+
+if(code===45||code===48)return"🌫️";
+
+if(code>=51&&code<=67)return"🌧️";
+
+if(code>=71&&code<=77)return"❄️";
+
+if(code>=80&&code<=82)return"🌦️";
+
+if(code>=85&&code<=86)return"🌨️";
+
+if(code>=95)return"⛈️";
+
+return"🌤️";
+
+}
+
+
+/* AI TRIP DEMO */
+
+function generateTrip(){
+
+const destination=
+document.getElementById("tripDestination")
+.value.trim();
+
+const days=
+parseInt(
+document.getElementById("tripDays").value
+)||5;
+
+const budget=
+document.getElementById("tripBudget").value;
+
+const style=
+document.getElementById("tripStyle").value;
+
+const result=
+document.getElementById("tripResult");
+
+if(!destination){
+
+result.innerHTML=`
+<p>⚠️ Enter a destination first.</p>
+`;
+
+return;
+
+}
+
+result.innerHTML=`
+
+<h3>✨ ${escapeHTML(destination)} — ${days} Day Plan</h3>
+
+<p style="margin-top:10px;color:var(--muted);">
+Style: ${escapeHTML(style)}
+${budget ? " · Budget: $" + escapeHTML(budget) : ""}
+</p>
+
+<br>
+
+<div class="result">
+
+<strong>Day 1 — Arrival</strong>
+
+<p style="margin-top:7px;color:var(--muted);">
+Arrival, hotel check-in and explore the local area.
+</p>
+
+</div>
+
+<div class="result">
+
+<strong>Day 2 — Explore</strong>
+
+<p style="margin-top:7px;color:var(--muted);">
+Visit major attractions and discover local culture.
+</p>
+
+</div>
+
+<div class="result">
+
+<strong>Day 3 — Experience</strong>
+
+<p style="margin-top:7px;color:var(--muted);">
+Enjoy activities, restaurants and unique experiences.
+</p>
+
+</div>
+
+<div class="result">
+
+<strong>Day ${days} — Departure</strong>
+
+<p style="margin-top:7px;color:var(--muted);">
+Final exploration, shopping and departure.
+</p>
+
+</div>
+
+<br>
+
+<small style="color:var(--muted);">
+🤖 Advanced AI itinerary generation will be connected through the backend later.
+</small>
+
+`;
 
 }
 
@@ -1850,84 +2001,96 @@ No fake booking link is being used. The official affiliate integration will be c
 
 function openBudget(){
 
-showModal(`
+openModal(
+"budget",
+"💰 Budget Planner"
+);
 
-<h2>💰 Budget Planner</h2>
-
-<br>
+document.getElementById("modalContent").innerHTML=`
 
 <div class="field">
 
-<label>Daily budget</label>
+<label>Trip budget ($)</label>
 
-<input id="daily" type="number" placeholder="100">
+<input
+id="budgetTotal"
+type="number"
+placeholder="1000"
+>
 
 </div>
-
-<br>
 
 <div class="field">
 
 <label>Number of days</label>
 
-<input id="budgetDays" type="number" placeholder="5">
+<input
+id="budgetDays"
+type="number"
+value="5"
+>
 
 </div>
 
-<br>
+<button class="btn primary"
+style="width:100%;"
+onclick="calculateBudget()">
 
-<button class="full" onclick="calculateBudget()">
-Calculate
+💰 Calculate
+
 </button>
 
-<div id="budgetResult" style="margin-top:20px"></div>
+<div id="budgetResult"></div>
 
-`);
+`;
 
 }
+
 
 function calculateBudget(){
 
-const daily=
-Number(document.getElementById("daily").value)||0;
+const total=
+Number(
+document.getElementById("budgetTotal").value
+);
 
 const days=
-Number(document.getElementById("budgetDays").value)||0;
+Number(
+document.getElementById("budgetDays").value
+);
 
-const total=daily*days;
+if(!total||!days){
 
-document.getElementById("budgetResult").innerHTML=`
+document.getElementById("budgetResult")
+.innerHTML=`
 
-<h3>Estimated Total: $${total}</h3>
-
-<br>
-
-<p class="muted">
-This is a basic estimate. More advanced budgeting will be added later.
-</p>
+<div class="result">
+⚠️ Enter budget and days.
+</div>
 
 `;
 
+return;
+
 }
 
+const daily=
+total/days;
 
-/* NOTIFICATIONS */
+document.getElementById("budgetResult")
+.innerHTML=`
 
-function showNotifications(){
+<div class="result">
 
-scrollToId("notifications");
+<h3>💰 Budget Estimate</h3>
 
-document.getElementById("notificationBox").innerHTML=`
+<p style="margin-top:10px;">
+Total: <strong>$${total.toFixed(2)}</strong>
+</p>
 
-<div style="padding:20px">
-
-🔔 <strong>Welcome to Voynexa AI!</strong>
-
-<br><br>
-
-<span class="muted">
-Personalized travel alerts and recommendations will appear here later.
-</span>
+<p style="margin-top:7px;">
+Daily: <strong>$${daily.toFixed(2)}</strong>
+</p>
 
 </div>
 
@@ -1936,72 +2099,45 @@ Personalized travel alerts and recommendations will appear here later.
 }
 
 
-/* ACCOUNT */
+/* BOOKING */
 
-function accountInfo(){
+function openBooking(type){
 
-showModal(`
+openModal(
+"booking",
+"🏨 Booking"
+);
 
-<h2>👤 Voynexa Account</h2>
+document.getElementById("modalContent").innerHTML=`
 
-<br>
+<div class="result">
 
-<p class="muted">
-Secure login, account synchronization and cloud trips will be connected through the backend later.
+<h3>🏨 Travel Booking</h3>
+
+<p style="margin-top:10px;color:var(--muted);line-height:1.6;">
+
+Voynexa is prepared for Booking.com integration.
+
+The official affiliate tracking link will be connected
+after the affiliate setup is completed.
+
 </p>
 
 <br>
 
-<button class="full" onclick="closeModal()">
-Continue as Guest
+<button class="btn primary"
+onclick="window.open(
+'https://www.booking.com/',
+'_blank'
+)">
+
+🏨 Open Booking.com
+
 </button>
 
-`);
+</div>
 
-}
-
-
-/* PRO */
-
-function proInfo(){
-
-showModal(`
-
-<h2>💎 Voynexa Pro</h2>
-
-<br>
-
-<p class="muted">
-Premium membership is prepared for future activation.
-</p>
-
-<br>
-
-<p>
-✓ Advanced AI<br>
-✓ Unlimited Trips<br>
-✓ Premium Insights<br>
-✓ Ad-free experience
-</p>
-
-`);
-
-}
-
-
-/* MODAL */
-
-function showModal(content){
-
-document.getElementById("modalContent").innerHTML=content;
-
-document.getElementById("modal").classList.add("show");
-
-}
-
-function closeModal(){
-
-document.getElementById("modal").classList.remove("show");
+`;
 
 }
 
@@ -2018,6 +2154,26 @@ return String(value)
 .replace(/'/g,"&#039;");
 
 }
+
+function escapeJS(value){
+
+return String(value)
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'");
+
+}
+
+
+/* CLOSE MODAL WHEN CLICK OUTSIDE */
+
+document.getElementById("modal")
+.addEventListener("click",function(e){
+
+if(e.target===this){
+closeModal();
+}
+
+});
 
 </script>
 
